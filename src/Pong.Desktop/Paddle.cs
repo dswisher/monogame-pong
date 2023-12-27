@@ -25,6 +25,9 @@ namespace Pong.Desktop
         }
 
 
+        public Rectangle Rect => rect;
+
+
         public void Update(GameTime gameTime)
         {
             var kstate = Keyboard.GetState();

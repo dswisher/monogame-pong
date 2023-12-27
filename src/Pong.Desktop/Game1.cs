@@ -12,6 +12,7 @@ public class Game1 : Game
     private GraphicsDeviceManager graphics;
     private Paddle paddle1;
     private Paddle paddle2;
+    private Ball ball;
 
     public Game1()
     {
@@ -28,6 +29,8 @@ public class Game1 : Game
     {
         paddle1 = new Paddle(false);
         paddle2 = new Paddle(true);
+
+        ball = new Ball();
 
         base.Initialize();
     }
@@ -52,6 +55,8 @@ public class Game1 : Game
         paddle1.Update(gameTime);
         paddle2.Update(gameTime);
 
+        ball.Update(gameTime, paddle1, paddle2);
+
         base.Update(gameTime);
     }
 
@@ -64,6 +69,8 @@ public class Game1 : Game
 
         paddle1.Draw();
         paddle2.Draw();
+
+        ball.Draw();
 
         Globals.SpriteBatch.End();
 

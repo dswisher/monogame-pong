@@ -13,5 +13,8 @@ namespace Pong.Desktop
         public static SpriteBatch SpriteBatch { get; set; }
 
         public static Texture2D Pixel { get; set; }
+
+        public static int Player1Score { get; set; }
+        public static int Player2Score { get; set; }
     }
 }
