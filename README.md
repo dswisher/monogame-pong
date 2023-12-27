@@ -26,3 +26,5 @@ This is saved in the `Pong.sln.DotSettings.user` file, which is NOT checked into
 The game will now run from within Rider.
 It does not run from the command-line, unless you do a `dotnet clean` first.
 
+For a little more info, see [this issue](https://github.com/MonoGame/MonoGame/issues/3556#issuecomment-1762816496).
+
