@@ -10,46 +10,62 @@ namespace Pong.Desktop;
 public class Game1 : Game
 {
     private GraphicsDeviceManager graphics;
-    private SpriteBatch spriteBatch;
+    private Paddle paddle1;
+    private Paddle paddle2;
 
     public Game1()
     {
         graphics = new GraphicsDeviceManager(this);
+        graphics.PreferredBackBufferWidth = Globals.Width;
+        graphics.PreferredBackBufferHeight = Globals.Height;
+
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
     }
 
+
     protected override void Initialize()
     {
-        // TODO: Add your initialization logic here
+        paddle1 = new Paddle(false);
+        paddle2 = new Paddle(true);
 
         base.Initialize();
     }
 
+
     protected override void LoadContent()
     {
-        spriteBatch = new SpriteBatch(GraphicsDevice);
+        Globals.SpriteBatch = new SpriteBatch(GraphicsDevice);
 
-        // TODO: use this.Content to load your game content here
+        Globals.Pixel = new Texture2D(GraphicsDevice, 1, 1);
+        Globals.Pixel.SetData(new[] { Color.White });
     }
+
 
     protected override void Update(GameTime gameTime)
     {
-        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+        if (Keyboard.GetState().IsKeyDown(Keys.Escape))
         {
             Exit();
         }
 
-        // TODO: Add your update logic here
+        paddle1.Update(gameTime);
+        paddle2.Update(gameTime);
 
         base.Update(gameTime);
     }
 
+
     protected override void Draw(GameTime gameTime)
     {
-        GraphicsDevice.Clear(Color.CornflowerBlue);
+        GraphicsDevice.Clear(Color.Black);
 
-        // TODO: Add your drawing code here
+        Globals.SpriteBatch.Begin();
+
+        paddle1.Draw();
+        paddle2.Draw();
+
+        Globals.SpriteBatch.End();
 
         base.Draw(gameTime);
     }
