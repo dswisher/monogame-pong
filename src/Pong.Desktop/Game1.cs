@@ -9,14 +9,14 @@ namespace Pong.Desktop;
 
 public class Game1 : Game
 {
-    private GraphicsDeviceManager graphics;
+    private SpriteFont font;
     private Paddle paddle1;
     private Paddle paddle2;
     private Ball ball;
 
     public Game1()
     {
-        graphics = new GraphicsDeviceManager(this);
+        var graphics = new GraphicsDeviceManager(this);
         graphics.PreferredBackBufferWidth = Globals.Width;
         graphics.PreferredBackBufferHeight = Globals.Height;
 
@@ -42,6 +42,8 @@ public class Game1 : Game
 
         Globals.Pixel = new Texture2D(GraphicsDevice, 1, 1);
         Globals.Pixel.SetData(new[] { Color.White });
+
+        font = Content.Load<SpriteFont>("Score");
     }
 
 
@@ -66,6 +68,9 @@ public class Game1 : Game
         GraphicsDevice.Clear(Color.Black);
 
         Globals.SpriteBatch.Begin();
+
+        Globals.SpriteBatch.DrawString(font, Globals.Player1Score.ToString(), new Vector2(100, 50), Color.White);
+        Globals.SpriteBatch.DrawString(font, Globals.Player2Score.ToString(), new Vector2(Globals.Width - 112, 50), Color.White);
 
         paddle1.Draw();
         paddle2.Draw();
